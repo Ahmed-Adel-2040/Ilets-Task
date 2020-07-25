@@ -20,11 +20,11 @@ class Ilets(QFrame):
 
     def actionButton(self):
         text = self.intro_textEdit.toPlainText()
-        G_Score,L_Score=self.grammerScore(text)
+        G_Score,L_Score=self.get_Score(text)
         self.intro_grammer_lable.setText(G_Score)
         self.intr_lexis_lable.setText(L_Score)
 
-    def grammerScore(self,text):
+    def get_Score(self,text):
         Grammer_Score = 0
         Lexis_Score = 0
         lang_tool = language_check.LanguageTool("en-US")

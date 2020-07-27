@@ -5,15 +5,11 @@ from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import QApplication,QFrame
 from PyQt5.uic import loadUi
 import language_check
-from colorama import Fore, Back, Style
 
-#redColor = QColor(255, 0, 0)
 
 @pyqtSlot()
 class Ilets(QFrame):
     #MORFOLOGIK_RULE_EN_US
-
-
     def __init__(self):
         super(Ilets,self).__init__()
         loadUi("main.ui",self)
@@ -25,15 +21,15 @@ class Ilets(QFrame):
 
     def actionButton(self):
         text = self.intro_textEdit.toPlainText()
+        Quest= self.Quest_textEdit.toPlainText()
         #print(self.intro_textEdit.setText(Back.LIGHTBLACK_EX+text))
         G_Score,L_Score=self.get_Score(text)
-        redText = "<span style=\" font-size:15pt; font-weight:600; background-color:#ff0000;\" >"
-        redText += text
-        redText += "</span>"
+        colorText=self.change_Color(text,Quest)
         self.intro_textEdit.clear()
-        self.intro_textEdit.append(redText)
+        self.intro_textEdit.append(colorText)
         self.intro_grammer_lable.setText(G_Score)
         self.intr_lexis_lable.setText(L_Score)
+
 
     def get_Score(self,text):
         Grammer_Score = 0
@@ -48,29 +44,54 @@ class Ilets(QFrame):
         return  str(Grammer_Score),str(Lexis_Score)
 
     def spiltParagraph(self,text):
-        dic={}
         sent = re.split(r' *[\.\?!][\'"\)\]]* *', text)
-        for s in sent:
-            dic[text.index(s)]=s
-        return dic
+        return sent
 
     def first_actionButton(self):
-        text = self.first_textEdit.toPlainText()
-        G_Score, L_Score = self.grammerScore(text)
+        text=self.first_textEdit.toPlainText()
+        G_Score,L_Score=self.get_Score(text)
         self.first_grammer_lable.setText(G_Score)
         self.first_lexis_lable.setText(L_Score)
 
     def second_actionButton(self):
         text = self.second_textEdit.toPlainText()
-        G_Score, L_Score = self.grammerScore(text)
+        G_Score,L_Score=self.get_Score(text)
         self.second_grammer_lable.setText(G_Score)
         self.scecond_lexis_lable.setText(L_Score)
 
     def opinion_actionButton(self):
         text = self.opinion_textEdit.toPlainText()
-        G_Score, L_Score = self.grammerScore(text)
+        G_Score,L_Score=self.get_Score(text)
         self.opinion_grammer_lable.setText(G_Score)
         self.opinion_lexis_lable.setText(L_Score)
+
+    def change_Color(self,text, Quest):
+        sentances = self.spiltParagraph(text)
+        redText = ''
+        simi = .3
+        for sent in sentances:
+            # simi=self.similarity_measure(sent,Quest)
+            if simi < .5:
+                simi=.6
+                redText += "<span style=\" font-size:15pt; font-weight:600; background-color:#ff0000;\" >"
+                redText += sent
+                redText += "</span>"
+            elif simi < .7 and simi >= .5:
+                simi = .8
+                redText += "<span style=\" font-size:15pt; font-weight:600; background-color:#ffe000;\" >"
+                redText += sent
+                redText += "</span>"
+            else:
+                simi = .2
+                redText += "<span style=\" font-size:15pt; font-weight:600; background-color:#ffe1f0;\" >"
+                redText += sent
+                redText += "</span>"
+        return redText
+
+    def similarity_measure(self,word1,word2):
+        simi=0
+        return simi
+
 
 
 

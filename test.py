@@ -19,6 +19,9 @@ class Ilets(QFrame):
         loadUi("main.ui",self)
         self.setWindowTitle("ILETS Correct")
         self.intro_correct_button.clicked.connect(self.actionButton)
+        self.first_correct_button.clicked.connect(self.first_actionButton)
+        self.second_correct_button.clicked.connect(self.second_actionButton)
+        self.opinion_correct_button.clicked.connect(self.opinion_actionButton)
 
     def actionButton(self):
         text = self.intro_textEdit.toPlainText()
@@ -43,12 +46,31 @@ class Ilets(QFrame):
             else:
                 Lexis_Score += 1
         return  str(Grammer_Score),str(Lexis_Score)
+
     def spiltParagraph(self,text):
         dic={}
         sent = re.split(r' *[\.\?!][\'"\)\]]* *', text)
         for s in sent:
             dic[text.index(s)]=s
         return dic
+
+    def first_actionButton(self):
+        text = self.first_textEdit.toPlainText()
+        G_Score, L_Score = self.grammerScore(text)
+        self.first_grammer_lable.setText(G_Score)
+        self.first_lexis_lable.setText(L_Score)
+
+    def second_actionButton(self):
+        text = self.second_textEdit.toPlainText()
+        G_Score, L_Score = self.grammerScore(text)
+        self.second_grammer_lable.setText(G_Score)
+        self.scecond_lexis_lable.setText(L_Score)
+
+    def opinion_actionButton(self):
+        text = self.opinion_textEdit.toPlainText()
+        G_Score, L_Score = self.grammerScore(text)
+        self.opinion_grammer_lable.setText(G_Score)
+        self.opinion_lexis_lable.setText(L_Score)
 
 
 

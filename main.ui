@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1005</width>
+    <width>1193</width>
     <height>634</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Frame</string>
   </property>
-  <widget class="QTabWidget" name="final_Resulat">
+  <widget class="QTabWidget" name="clear_Intro">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1011</width>
-     <height>631</height>
+     <width>1451</width>
+     <height>771</height>
     </rect>
    </property>
    <property name="font">
@@ -30,7 +30,7 @@
     </font>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>5</number>
    </property>
    <widget class="QWidget" name="tab_6">
     <attribute name="title">
@@ -126,7 +126,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lexis Score :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
-    <widget class="QLabel" name="intr_lexis_lable">
+    <widget class="QLabel" name="intro_lexis_lable">
      <property name="geometry">
       <rect>
        <x>680</x>
@@ -354,7 +354,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lexis Score :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
-    <widget class="QLabel" name="scecond_lexis_lable">
+    <widget class="QLabel" name="second_lexis_lable">
      <property name="geometry">
       <rect>
        <x>720</x>
@@ -571,96 +571,148 @@ p, li { white-space: pre-wrap; }
     <attribute name="title">
      <string>Final Resulat</string>
     </attribute>
-    <widget class="QTextBrowser" name="textBrowser_13">
+    <widget class="QTextBrowser" name="textBrowser_Report">
      <property name="geometry">
       <rect>
-       <x>130</x>
-       <y>40</y>
-       <width>256</width>
-       <height>41</height>
+       <x>510</x>
+       <y>20</y>
+       <width>491</width>
+       <height>461</height>
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QPushButton" name="clear_button">
      <property name="geometry">
       <rect>
-       <x>530</x>
-       <y>40</y>
-       <width>401</width>
-       <height>41</height>
+       <x>730</x>
+       <y>550</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string>Clear</string>
      </property>
     </widget>
     <widget class="QTextBrowser" name="textBrowser_14">
      <property name="geometry">
       <rect>
-       <x>130</x>
-       <y>130</y>
-       <width>256</width>
-       <height>41</height>
+       <x>30</x>
+       <y>40</y>
+       <width>221</width>
+       <height>81</height>
       </rect>
      </property>
-    </widget>
-    <widget class="QLabel" name="label_2">
-     <property name="geometry">
-      <rect>
-       <x>530</x>
-       <y>130</y>
-       <width>401</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>TextLabel</string>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Mongolian Baiti'; font-size:16pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Coherence and cohesion&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_3">
+    <widget class="QTextBrowser" name="final_Resulat_Coherence">
      <property name="geometry">
       <rect>
-       <x>530</x>
-       <y>200</y>
-       <width>401</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_4">
-     <property name="geometry">
-      <rect>
-       <x>530</x>
-       <y>290</y>
-       <width>401</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
-    <widget class="QTextBrowser" name="textBrowser_15">
-     <property name="geometry">
-      <rect>
-       <x>130</x>
-       <y>210</y>
-       <width>256</width>
-       <height>41</height>
+       <x>250</x>
+       <y>40</y>
+       <width>231</width>
+       <height>81</height>
       </rect>
      </property>
     </widget>
     <widget class="QTextBrowser" name="textBrowser_16">
      <property name="geometry">
       <rect>
-       <x>130</x>
-       <y>300</y>
-       <width>256</width>
-       <height>41</height>
+       <x>30</x>
+       <y>140</y>
+       <width>221</width>
+       <height>81</height>
       </rect>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Mongolian Baiti'; font-size:16pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lexis &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QTextBrowser" name="final_Result_Lexis">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>140</y>
+       <width>231</width>
+       <height>81</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QTextBrowser" name="textBrowser_18">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>250</y>
+       <width>221</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Mongolian Baiti'; font-size:16pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Grammar&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QTextBrowser" name="final_Result_Grammer">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>250</y>
+       <width>231</width>
+       <height>81</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QTextBrowser" name="textBrowser_20">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>350</y>
+       <width>221</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Mongolian Baiti'; font-size:16pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Overall score &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QTextBrowser" name="final_Result_OverallScore">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>350</y>
+       <width>231</width>
+       <height>81</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="final_Result_button">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>550</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Final Result</string>
      </property>
     </widget>
    </widget>

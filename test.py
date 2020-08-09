@@ -13,17 +13,21 @@ class Ilets(QFrame):
     second_List=[]
     opinion_List=[]
     intro_List=[]
-    G_first=0
-    L_first=0
-    G_second=0
-    L_second=0
-    G_opinion=0
-    L_opinion=0
-    G_intro=0
-    L_intro=0
+    firstText , introText, secondText, opinionText= '', '', '', ''
+    total_Advanced_Count , total_Composite_Count = 0 , 0
+    G_first , L_first = 9 , 9
+    G_second , L_second = 9 , 9
+    G_opinion , L_opinion = 9 , 9
+    G_intro , L_intro = 9 , 9
     total_Grammar_Score = 0
     total_Lexis_Score = 0
-    total_Sectance_conut = 0
+    total_Sentance_Score = 0
+    total_Sentance_conut0 = 0
+    total_Sentance_conut1 = 0
+    total_Sentance_conut2 = 0
+    total_Sentance_conut3 = 0
+    overAll_Score = 0
+
     text_General=''
     model=1
 
@@ -41,21 +45,22 @@ class Ilets(QFrame):
 
     def actionButton(self):
         text = self.intro_textEdit.toPlainText()
+        self.introText=text
         Quest= self.Quest_textEdit.toPlainText()
         #print(self.intro_textEdit.setText(Back.LIGHTBLACK_EX+text))
         G_Score,L_Score,self.intro_List=self.get_Score(text)
         self.intro_textEdit.clear()
         boldColored=self.getBoldText(self.intro_List,text)
         self.intro_textEdit.clear()
-        colorText = self.change_Color(boldColored, Quest)
+        colorText ,total_Sectance_conut0= self.change_Color(boldColored, Quest)
         self.intro_textEdit.append(colorText)
         self.text_General+=colorText
-        self.G_intro+=(9-(G_Score/self.total_Sectance_conut))
-        self.L_intro+= (9 - (L_Score / self.total_Sectance_conut))
+        self.G_intro = (9 - (G_Score / self.total_Sentance_conut0))
+        self.L_intro = (9 - (L_Score / self.total_Sentance_conut0))
         self.intro_grammer_lable.setText(str(self.G_intro))
         self.intro_lexis_lable.setText(str(self.L_intro))
         self.intro_correct_button.setEnabled(False)
-        print(self.advancedCheck(text))
+
 
     def get_Score(self,text):
         Grammer_Score = 0
@@ -85,51 +90,63 @@ class Ilets(QFrame):
     def first_actionButton(self):
         Quest = self.Quest_textEdit.toPlainText()
         text=self.first_textEdit.toPlainText()
+        self.firstText=text
         G_Score,L_Score,self.first_List=self.get_Score(text)
         boldColored = self.getBoldText(self.first_List, text)
         self.first_textEdit.clear()
-        colorText = self.change_Color(boldColored, Quest)
+        colorText,self.total_Sentance_conut1 = self.change_Color(boldColored, Quest)
         self.first_textEdit.append(colorText)
         self.text_General += colorText
-        self.G_first += (9 - (G_Score / self.total_Sectance_conut))
-        self.L_first += (9 - (L_Score / self.total_Sectance_conut))
+        self.G_first = (9 - (G_Score / self.total_Sentance_conut1))
+        self.L_first = (9 - (L_Score / self.total_Sentance_conut1))
         self.first_grammer_lable.setText(str(self.G_first))
         self.first_lexis_lable.setText(str(self.L_first))
         self.first_correct_button.setEnabled(False)
 
     def finalResult_actionButton(self):
         self.textBrowser_Report.setText(self.text_General)
-
+        self.getOverAll_Score()
+        self.final_Resulat_Coherence.setText(str(self.total_Sentance_Score))
+        self.final_Result_Lexis.setText(str(self.total_Lexis_Score))
+        self.final_Result_Grammer.setText(str(self.total_Grammar_Score))
+        self.final_Result_OverallScore.setText(str(self.overAll_Score))
 
     def second_actionButton(self):
         Quest = self.Quest_textEdit.toPlainText()
         text = self.second_textEdit.toPlainText()
+        self.secondText=text
         G_Score,L_Score,self.second_List=self.get_Score(text)
-        self.second_grammer_lable.setText(str(G_Score))
-        self.second_lexis_lable.setText(str(L_Score))
         boldColored = self.getBoldText(self.second_List, text)
         self.second_textEdit.clear()
-        colorText = self.change_Color(boldColored, Quest)
+        colorText,self.total_Sentance_conut2 = self.change_Color(boldColored, Quest)
         self.second_textEdit.append(colorText)
         self.text_General += colorText
+        self.G_second = (9 - (G_Score / self.total_Sentance_conut2))
+        self.L_second = (9 - (L_Score / self.total_Sentance_conut2))
+        self.second_grammer_lable.setText(str(self.G_Second))
+        self.second_lexis_lable.setText(str(self.L_second))
         self.second_correct_button.setEnabled(False)
 
     def opinion_actionButton(self):
         Quest = self.Quest_textEdit.toPlainText()
         text = self.opinion_textEdit.toPlainText()
+        self.opinionText=text
         G_Score,L_Score,self.opinion_List=self.get_Score(text)
         self.opinion_grammer_lable.setText(str(G_Score))
         self.opinion_lexis_lable.setText(str(L_Score))
         boldColored = self.getBoldText(self.opinion_List, text)
         self.opinion_textEdit.clear()
-        colorText = self.change_Color(boldColored, Quest)
+        colorText,self.total_Sentance_conut3 = self.change_Color(boldColored, Quest)
         self.opinion_textEdit.append(colorText)
         self.text_General += colorText
+        self.G_opinion = (9 - (G_Score / self.total_Sentance_conut3))
+        self.L_opinion = (9 - (L_Score / self.total_Sentance_conut3))
+        self.opinion_grammer_lable.setText(str(self.G_opinion))
+        self.opinion_lexis_lable.setText(str(self.L_opinion))
         self.opinion_correct_button.setEnabled(False)
 
     def change_Color(self,text, Quest):
         sentances = self.spiltParagraph(text)
-        self.total_Sectance_conut+=len(sentances)
         redText = ''
         simi = .3
         for sent in sentances:
@@ -149,7 +166,7 @@ class Ilets(QFrame):
                 redText += "<span style=\" font-weight:50pt; background-color:#C0C0C0;\" >"
                 redText += sent
                 redText += "</span>"
-        return redText
+        return redText ,len(sentances)
 
     def similarity_measure(self,word1,word2):
         simi=0
@@ -173,9 +190,10 @@ class Ilets(QFrame):
             for word in List:
                 if  word in sentance:
                     advancedCount+=1
+        self.total_Advanced_Count+=advancedCount
         return advancedCount
 
-    def compositCheck(self,text=''):
+    def compositeCheck(self, text=''):
         compositeCount = 0
         List = ['while', 'when', 'because', 'if']
         sentances = self.spiltParagraph(text)
@@ -183,8 +201,25 @@ class Ilets(QFrame):
             for word in List:
                 if word in sentance:
                     compositeCount += 1
+        self.total_Composite_Count+=compositeCount
         return compositeCount
 
+    def getOverAll_Score(self):
+        text=self.introText+self.firstText+self.secondText+self.opinionText
+        self.compositeCheck(text)
+        self.advancedCheck(text)
+        if self.total_Advanced_Count!=0 and self.total_Composite_Count!=0:
+            self.total_Sentance_Score=9
+        elif self.total_Advanced_Count == 0 and self.total_Composite_Count != 0:
+            self.total_Sentance_Score = 7
+        else:
+            self.total_Sentance_Score=5
+        allGrammar_Score=self.G_first+self.G_intro+self.G_second+self.G_opinion
+        allSentanc_Count=self.total_Sentance_conut0+self.total_Sentance_conut1+self.total_Sentance_conut2+self.total_Sentance_conut3
+        allLaxis_Score= self.L_first + self.L_intro + self.L_second + self.L_opinion
+        self.total_Grammar_Score=9-(allGrammar_Score/allSentanc_Count)
+        self.total_Lexis_Score = 9 - (allLaxis_Score / allSentanc_Count)
+        self.overAll_Score=(self.total_Lexis_Score+self.total_Grammar_Score+self.total_Sentance_Score)/3
 
 
     def clear_actionButton(self):
@@ -206,9 +241,6 @@ class Ilets(QFrame):
         self.first_correct_button.setEnabled(True)
         self.textBrowser_Report.clear()
 
-
-
-    
 app=QApplication(sys.argv)
 widget=Ilets()
 widget.show()

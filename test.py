@@ -1,3 +1,4 @@
+import math
 import re
 import sys
 from PyQt5.QtCore import pyqtSlot
@@ -28,7 +29,6 @@ class Ilets(QFrame):
 
 
     text_General=''
-    model=1
 
     def __init__(self):
         super(Ilets,self).__init__()
@@ -53,10 +53,11 @@ class Ilets(QFrame):
         self.text_General+=colorText
         self.G_intro = (9 - (G_Score / self.total_Sentance_conut0))
         self.L_intro = (9 - (L_Score / self.total_Sentance_conut0))
+        self.G_intro=self.get_Integer(self.G_intro)
+        self.L_intro=self.get_Integer(self.L_intro)
         self.intro_grammer_lable.setText(str(self.G_intro))
         self.intro_lexis_lable.setText(str(self.L_intro))
         self.intro_correct_button.setEnabled(False)
-
 
     def get_Score(self,text):
         Grammer_Score = 0
@@ -95,17 +96,26 @@ class Ilets(QFrame):
         self.text_General += colorText
         self.G_first = (9 - (G_Score / self.total_Sentance_conut1))
         self.L_first = (9 - (L_Score / self.total_Sentance_conut1))
+        self.G_first=self.get_Integer(self.G_first)
+        self.L_first=self.get_Integer(self.L_first)
         self.first_grammer_lable.setText(str(self.G_first))
         self.first_lexis_lable.setText(str(self.L_first))
         self.first_correct_button.setEnabled(False)
 
     def finalResult_actionButton(self):
-        self.textBrowser_Report.setText(self.text_General)
-        self.getOverAll_Score()
-        self.final_Resulat_Coherence.setText(str(self.total_Sentance_Score))
-        self.final_Result_Lexis.setText(str(self.total_Lexis_Score))
-        self.final_Result_Grammer.setText(str(self.total_Grammar_Score))
-        self.final_Result_OverallScore.setText(str(self.overAll_Score))
+        if self.text_General=='':
+            self.textBrowser_Report.setText('Mr Nour : there is no any part of Paragraph entered ')
+        else:
+            self.textBrowser_Report.setText(self.text_General)
+            self.getOverAll_Score()
+            self.final_Resulat_Coherence.setText('Need to:\n•String ideas properly and logically \n •Develop ideas logically\n •Linkers and signposting words')
+            self.final_Result_Lexis.setText('Need to:\n•Advanced context and topic specific vocabulary\n•Word choice\n•Collocations\n•Synonyms\n•Repetition of lexis')
+            self.final_Result_Grammer.setText('Need to:\n•Advanced grammar structures\n•Connectors\n•Punctuation\n•Modals\n•Basic sentence structures')
+            self.final_Result_OverallScore.setText(str(self.overAll_Score))
+            self.coherance_finalScore.append(str(self.total_Sentance_Score))
+            self.laxis_finalScore.append(str(self.total_Lexis_Score))
+            self.grammar_finalScore.append(str(self.total_Grammar_Score))
+            self.final_Result_button.setEnabled(False)
 
     def second_actionButton(self):
         Quest = self.Quest_textEdit.toPlainText()
@@ -119,6 +129,8 @@ class Ilets(QFrame):
         self.text_General += colorText
         self.G_second = (9 - (G_Score / self.total_Sentance_conut2))
         self.L_second = (9 - (L_Score / self.total_Sentance_conut2))
+        self.G_second=self.get_Integer(self.G_second)
+        self.L_second=self.get_Integer(self.L_second)
         self.second_grammer_lable.setText(str(self.G_second))
         self.second_lexis_lable.setText(str(self.L_second))
         self.second_correct_button.setEnabled(False)
@@ -137,6 +149,8 @@ class Ilets(QFrame):
         self.text_General += colorText
         self.G_opinion = (9 - (G_Score / self.total_Sentance_conut3))
         self.L_opinion = (9 - (L_Score / self.total_Sentance_conut3))
+        self.G_opinion=self.get_Integer(self.G_opinion)
+        self.L_opinion=self.get_Integer(self.L_opinion)
         self.opinion_grammer_lable.setText(str(self.G_opinion))
         self.opinion_lexis_lable.setText(str(self.L_opinion))
         self.opinion_correct_button.setEnabled(False)
@@ -217,8 +231,22 @@ class Ilets(QFrame):
         allLaxis_Score= self.L_first + self.L_intro + self.L_second + self.L_opinion
         self.total_Grammar_Score=allGrammar_Score/4
         self.total_Lexis_Score = allLaxis_Score / 4
+        self.total_Grammar_Score = self.get_Integer(self.total_Grammar_Score)
+        self.total_Lexis_Score=self.get_Integer(self.total_Lexis_Score)
         self.overAll_Score=(self.total_Lexis_Score+self.total_Grammar_Score+self.total_Sentance_Score)/3
+        self.overAll_Score=self.get_Integer(self.overAll_Score)
 
+    def get_Integer(self, num):
+        final_score = 0
+        floor_score = math.floor(num)
+        left_sore = num - floor_score
+        if left_sore < .5:
+            left_sore = 0
+        elif left_sore > .5:
+            left_sore = .5
+
+        final_score = floor_score + left_sore
+        return final_score
 
     def clear_actionButton(self):
         self.intro_textEdit.clear()
@@ -237,11 +265,15 @@ class Ilets(QFrame):
         self.opinion_correct_button.setEnabled(True)
         self.second_correct_button.setEnabled(True)
         self.first_correct_button.setEnabled(True)
+        self.final_Result_button.setEnabled(True)
         self.textBrowser_Report.clear()
         self.final_Resulat_Coherence.clear()
         self.final_Result_Lexis.clear()
         self.final_Result_Grammer.clear()
         self.final_Result_OverallScore.clear()
+        self.coherance_finalScore.setText('Coherence and cohesion: ')
+        self.laxis_finalScore.setText('Lexis : ')
+        self.grammar_finalScore.setText('Grammar :')
         self.first_List, self.second_List, self.opinion_List, self.intro_List = [], [], [], []
         self.total_Sentance_conut0, self.total_Sentance_conut1, self.total_Sentance_conut2, self.total_Sentance_conut3 = 0, 0, 0, 0
         self.G_first,self.L_first = 9, 9
@@ -255,7 +287,6 @@ class Ilets(QFrame):
         self.total_Sentance_Score = 0
         self.text_General=''
         self.overAll_Score=0
-
 
 app=QApplication(sys.argv)
 widget=Ilets()
